@@ -1,0 +1,31 @@
+.title {
+    text-align: center;
+}
+.description{
+    text-align: center;
+}
+#classform{
+    text-align: center;
+}
+.formtext{
+    text-indent: -320px;
+}
+#fname{
+    width: 400px;
+}
+#lname{
+    width: 400px;
+}
+#email{
+    width: 400px;
+}
+#emailtext{
+    text-indent: -360px;
+}
+#scheduletext{
+    text-indent: -330px;
+}
+#schedule{
+    width: 400px;
+    height: 400px;
+}
