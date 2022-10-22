@@ -1,5 +1,3 @@
-const form = document.querySelector('#classform')
-
 const fname = document.getElementById("fname")
 const lname = document.getElementById("lname")
 const email = document.getElementById("email")
@@ -30,28 +28,4 @@ button.onclick = function(){
 }
 
 
-/* listen for submit even
-form.addEventListener('submit', event => {
-   // disable default action
-   event.preventDefault()
 
-   // configure a request
-   const xhr = new XMLHttpRequest()
-   xhr.open('POST', '/classes')
- 
-   // prepare form data
-   let data = new FormData(form)
- 
-   // set headers
-   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
- 
-   // send request
-   xhr.send(data)
- 
-   // listen for `load` event
-   xhr.onload = () => {
-     console.log(xhr.responseText)
-   }
-})
-*/
