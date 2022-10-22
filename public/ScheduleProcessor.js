@@ -25,6 +25,8 @@ button.onclick = function(){
             schedule: schedule.value
         })
     });
+    document.getElementById("classform").innerHTML = "Your responses have been submitted. Please await an email from us.";
+
 }
 
 
