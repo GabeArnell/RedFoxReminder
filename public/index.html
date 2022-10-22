@@ -8,25 +8,38 @@
     <link rel="stylesheet" href="./Schedule_Reminder.css">
   </head>
   <body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h1 class="title">Schedule Reminder</h1> 
-    <h2 class="description">Welcome to Schedule Reminder. This website was designed for people like you.</h2>
-    <h2 class="description">Having trouble remembering when your classes are or where they are located?</h2>
-    <h2 class="description">Just upload a screenshot of your schedule and we will autmotatically create the 
+    <h2>Current Date and Time is <span id='date-time'></span>.</h2>
+    <div class="description">
+    <h2>Welcome to Schedule Reminder. This website was designed for people like you.</h2>
+    <h2>Having trouble remembering when your classes are or where they are located?</h2>
+    <h2>Just upload a screenshot of your schedule and we will autmotatically create the 
       reminders you need to remember where you need to be and when.
     </h2>
+    </div>
     <br>
     <br>
     <br>
     <form id="classform" method="POST">
       <form>
         <label for="fname" class="formtext">First name:</label><br>
-        <input type="text" id="fname" name="fname"><br>
+        <input type="text" id="fname" name="fname" required><br>
         <label for="lname" class="formtext">Last name:</label><br>
-        <input type="text" id="lname" name="lname"><br>
+        <input type="text" id="lname" name="lname" required><br>
         <label for="email" id="emailtext">Email:</label><br>
-        <input type="text" id="email" name="email"><br>
+        <input type="text" id="email" name="email" required><br>
         <label for="schedule" id="scheduletext">Schedule:</label><br>
         <textarea id="schedule" rows="100" cols="100"></textarea><br><br>
+        <label for="schedulefile" id="schedulefile">Schedule File Upload:</label><br><br>
+        <input type="file" id="schedulephoto" name="schedulefile" accept=".pdf, .png, .jpeg"><br><br>
         <button type="button" id="send">Submit</button>
       </form>
     </form>
