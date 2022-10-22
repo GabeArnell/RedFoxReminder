@@ -1,0 +1,17 @@
+{
+  "name": "redfoxreminder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "enmap": "^5.9.2",
+    "express": "^4.18.2",
+    "mailtrap": "^3.0.1",
+    "tesseract.js": "^3.0.3"
+  }
+}
