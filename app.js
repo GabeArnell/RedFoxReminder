@@ -19,9 +19,8 @@ const lazyDB = []
 app.post("/submit",(req,res)=>{
     console.log("Got request to submit a schedule")
 
-    let inputText = req.body.scheduletext
+    let inputText = req.body.schedule
     let inputEmail = req.body.email.trim().toLowerCase()
-
     let schedule = parseModule.parse(inputText.trim())
     let userData = {
       email: inputEmail,
@@ -36,7 +35,6 @@ const days = ["sunday","monday","tuesday","wednesday","thursday","friday","satur
 function checkReminders(){
   for (let userData of lazyDB){
     for (let course of userData.schedule){
-      let startTime = course.starttime;
       let shouldAlert = false;
 
       let currentDay = days[new Date().getDay()]
@@ -74,5 +72,10 @@ setInterval(()=>{
   checkReminders()
 }, 5*1000)
 // Check reminders every 5 seconds or so
+
+const { MailtrapClient } = require("mailtrap");
+
+const TOKEN = "aeeb2d73f4d1a73f5b7d1cc314edc6f0";
+const ENDPOINT = "https://send.api.mailtrap.io/";
 
 
