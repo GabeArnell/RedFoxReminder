@@ -1,11 +1,13 @@
 const {PORT,emailuser, emailpw} = require("./config.json")
 const express = require('express')
-
 const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+const formidable = require('formidable');
+const fs = require('fs');
+
+// default options
+//app.use(express.json())
+
 const path = require("path")
-app.use(express.static(path.join(__dirname,'public')));
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`)
 })
@@ -15,19 +17,83 @@ const mailModule = require("./mailer")
 
 const lazyDB = []
 
+//mainpage
+app.get("/",(req,res)=>{
+  fs.readFile('public/index.html', function (error, data){
+      if (error){
+          res.writeHead(404);
+          res.write('Error: Shard not found.');
+      }else{
+          res.write(data);
+      }
+      res.end()
+  })
+  console.log('main hit')
+})
+app.get("/ScheduleProcessor.js",(req,res)=>{
+  fs.readFile('public/ScheduleProcessor.js', function (error, data){
+      if (error){
+          res.writeHead(404);
+          res.write('Error: Shard not found.');
+      }else{
+          res.write(data);
+      }
+      res.end()
+  })
+})
+app.get("/Schedule_Reminder.css",(req,res)=>{
+  fs.readFile('public/Schedule_Reminder.css', function (error, data){
+      if (error){
+          res.writeHead(404);
+          res.write('Error: Shard not found.');
+      }else{
+          res.write(data);
+      }
+      res.end()
+  })
+})
 
 app.post("/submit",(req,res)=>{
-    console.log("Got request to submit a schedule")
+  console.log("Got request to submit a schedule")
 
-    let inputText = req.body.schedule
-    let inputEmail = req.body.email.trim().toLowerCase()
-    let schedule = parseModule.parse(inputText.trim())
-    let userData = {
-      email: inputEmail,
-      schedule: schedule
+  const form = formidable({ multiples: true });
+
+  form.parse(req, (err, fields, files) => {
+    let downloadPath = './uploads/image.png'
+    console.log("Fields", fields)
+    console.log("files",files)
+    if (err) {
+      console.log('errored out', err)
+      return;
     }
 
-    lazyDB.push(userData)
+    let inputEmail = fields.email;
+    let imageFile = files.image;
+    let filepath = imageFile.filepath;   // this gives error
+    console.log(filepath)
+    let newpath = downloadPath;
+
+    //Copy the uploaded file to a custom folder
+    fs.rename(filepath, newpath, function () {
+      //Send a NodeJS file upload confirmation message
+      console.log('NodeJS File Upload Success! to ',newpath);
+    });
+
+
+    parseModule.parse(callback, newpath)
+    function callback(schedule){
+      let userData = {
+        email: inputEmail,
+        schedule: schedule
+      }
+      lazyDB.push(userData)
+      res.json(schedule[0]);     
+      res.end();
+  
+    }
+
+
+  });
 })
 
 console.log(new Date().getDay(),new Date().getHours(), new Date().getMinutes())
@@ -72,10 +138,4 @@ setInterval(()=>{
   checkReminders()
 }, 5*1000)
 // Check reminders every 5 seconds or so
-
-const { MailtrapClient } = require("mailtrap");
-
-const TOKEN = "aeeb2d73f4d1a73f5b7d1cc314edc6f0";
-const ENDPOINT = "https://send.api.mailtrap.io/";
-
 
