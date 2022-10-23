@@ -1,3 +1,6 @@
 {
-    "PORT": 3000
+    "PORT": 3000,
+    "emailtoken": "LTRKdoCl8QuRlZAEFLpTQRMa",
+    "emailUser": "AKIASPPQPPH5TJERLFGP",
+    "emailPassword": "BMKbz2WaE6/rIDAWb4XNnYyHNJEJwe3LmlWjQ3nF27fy"
 }

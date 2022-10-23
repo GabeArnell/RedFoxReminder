@@ -1,4 +1,10 @@
-module.exports.parse = (inputText)=>{
+const imageModule = require("./image-reader")
+
+module.exports.parse = async (callback,imageFile)=>{
+
+    imageModule.run(callback,imageFile)
+
+    return;
 
     // placeholder
     return ([
